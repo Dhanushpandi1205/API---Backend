@@ -45,8 +45,9 @@ app.post("/register", (req, res) => {
                         userid: doc._id
                     });
                 } catch (err) {
-                    res.status(500).send({ message: "Some problem" });
-                }
+    console.error("Register error:", err);  // <-- log actual error
+    res.status(500).send({ message: "Some problem in registering user", error: err.message });
+}
             });
         } else {
             res.status(500).send({ message: "Error generating salt" });
