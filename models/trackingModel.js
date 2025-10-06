@@ -20,7 +20,14 @@ const trackingSchema = mongoose.Schema(
         type:Number,
         min:1,
         required:true
-        }
+        },
+       details:{
+            protein: Number,
+            carbohydrates: Number,
+            calories:Number,
+            fiber: Number,
+            fat:Number
+          }
 
     },{timestamps:true})
 
