@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+require('dotenv').config();
 
 // Importing models
 const userModel = require('./models/userModel');
@@ -11,7 +12,7 @@ const verifyToken = require("./models/verifytoken");
 const trackingModel = require("./models/trackingModel");
 
 // Database connection
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/nutrify";
+const mongoURI = process.env.MONGO_URI ;
 
 mongoose.connect(mongoURI)
 
@@ -29,6 +30,7 @@ app.use(cors());
 // Endpoint for registering user
 app.post("/register", (req, res) => {
     let user = req.body;
+    console.log("Incoming user data:", user);
 
     bcrypt.genSalt(10, (err, salt) => {
         if (!err) {
