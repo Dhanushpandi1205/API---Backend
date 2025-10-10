@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-require('dotenv').config();
+
 
 // Importing models
 const userModel = require('./models/userModel');
@@ -12,6 +13,7 @@ const verifyToken = require("./models/verifytoken");
 const trackingModel = require("./models/trackingModel");
 
 // Database connection
+const PORT = process.env.PORT || 8000;
 const mongoURI = process.env.MONGO_URI ;
 
 mongoose.connect(mongoURI)
@@ -144,7 +146,7 @@ app.get("/track/:userid/:date", verifyToken, async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
 });
